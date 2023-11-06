@@ -121,7 +121,7 @@ class _SliderImagesState extends State<SliderImages> {
             ),
           ),
           Positioned(
-            top: blockSizeVertical * 18,
+            top: blockSizeVertical * 19,
             left: blockSizeHorizontal * 2.5,
             child: Text(
               'Terms & Conditions Apply*',

@@ -35,7 +35,7 @@ class _AllEventState extends State<AllEvent> {
                     'Explore Local Events In Your Area',
                     style: TextStyle(
                       color: Color(0xFF001833),
-                      fontSize: blockSizeVertical * 2.3,
+                      fontSize: blockSizeVertical * 2,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w700,
                       height: 1.2,
@@ -92,7 +92,7 @@ class _AllEventState extends State<AllEvent> {
                     'Events this weekend',
                     style: TextStyle(
                       color: Color(0xFF001833),
-                      fontSize: blockSizeVertical * 2.3,
+                      fontSize: blockSizeVertical * 2,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w700,
                       height: 1.2,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:radarsofttask/app/presentation/pages/login_screen.dart';
 import '../../constants/image_constants.dart';
 import '../../data/services/navigation_service.dart';
 import '../../utils/responsive_layout.dart';
@@ -140,7 +141,7 @@ class SignFormField extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Get.to(SignInScreen());
+                    Get.to(LoginScreen());
                   },
                   child: Text(
                     "Login",
