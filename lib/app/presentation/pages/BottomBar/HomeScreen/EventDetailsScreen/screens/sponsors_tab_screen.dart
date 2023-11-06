@@ -7,7 +7,6 @@ class SponsorsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Content for the Sponsors tab
     return Center(
       child: Text('Sponsors Content'),
     );

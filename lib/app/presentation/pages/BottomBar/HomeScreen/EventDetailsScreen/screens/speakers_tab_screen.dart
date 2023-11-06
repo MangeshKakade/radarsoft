@@ -7,7 +7,6 @@ class SpeakersTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Content for the Speakers tab
     return Center(
       child: Text('Speakers Content'),
     );

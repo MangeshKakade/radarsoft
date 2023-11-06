@@ -7,7 +7,6 @@ class AgendaTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Content for the Agenda tab
     return Center(
       child: Text('Agenda Content'),
     );
