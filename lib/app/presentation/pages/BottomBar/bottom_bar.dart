@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:radarsofttask/app/presentation/pages/BottomBar/profile_screen.dart';
 
 
+import '../../view_models/home_view_model.dart';
 import 'calendar_screen.dart';
-import 'HomeScreen/home_scree.dart';
+import 'HomeScreen/home_screen.dart';
 import 'message_screen.dart';
 
 
 
 class BottomBar extends StatefulWidget {
+  const BottomBar({super.key});
+
   @override
   _BottomBarState createState() => _BottomBarState();
 }
@@ -17,10 +20,10 @@ class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeScreen(),
-    MessageScreen(),
-    CalendarScreen(),
-    ProfileScreen(),
+    HomeScreen(viewModel: HomeViewModel()), // Provide a HomeViewModel instance.
+    const MessageScreen(),
+    const CalendarScreen(),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -95,7 +98,7 @@ class BottomBarItem extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onTap;
 
-  BottomBarItem({
+  const BottomBarItem({super.key,
     required this.icon,
     required this.label,
     required this.index,
@@ -126,7 +129,7 @@ class BottomBarItem extends StatelessWidget {
             ),
             const SizedBox(width: 5,),
             AnimatedCrossFade(
-              firstChild: Container(width: 0, height: 0),
+              firstChild: const SizedBox(width: 0, height: 0),
               secondChild: Text(
                 label,
                 style: const TextStyle(

@@ -9,14 +9,14 @@ class EventList {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -92,27 +92,27 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['eventName'] = this.eventName;
-    data['categoryMaster'] = this.categoryMaster;
-    data['startDate'] = this.startDate;
-    data['endDate'] = this.endDate;
-    data['customBooking'] = this.customBooking;
-    data['generalInfo'] = this.generalInfo;
-    data['amount'] = this.amount;
-    data['location'] = this.location;
-    data['venue'] = this.venue;
-    data['organiserMaster'] = this.organiserMaster;
-    data['organiserName'] = this.organiserName;
-    data['locationMapLink'] = this.locationMapLink;
-    data['bookingMaxLimit'] = this.bookingMaxLimit;
-    data['description'] = this.description;
-    data['eventBanner'] = this.eventBanner;
-    data['createdDate'] = this.createdDate;
-    data['updatedDate'] = this.updatedDate;
-    data['isActive'] = this.isActive;
-    data['eventCount'] = this.eventCount;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['eventName'] = eventName;
+    data['categoryMaster'] = categoryMaster;
+    data['startDate'] = startDate;
+    data['endDate'] = endDate;
+    data['customBooking'] = customBooking;
+    data['generalInfo'] = generalInfo;
+    data['amount'] = amount;
+    data['location'] = location;
+    data['venue'] = venue;
+    data['organiserMaster'] = organiserMaster;
+    data['organiserName'] = organiserName;
+    data['locationMapLink'] = locationMapLink;
+    data['bookingMaxLimit'] = bookingMaxLimit;
+    data['description'] = description;
+    data['eventBanner'] = eventBanner;
+    data['createdDate'] = createdDate;
+    data['updatedDate'] = updatedDate;
+    data['isActive'] = isActive;
+    data['eventCount'] = eventCount;
     return data;
   }
 }
