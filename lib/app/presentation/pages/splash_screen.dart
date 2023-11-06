@@ -4,45 +4,51 @@ import 'package:get/get.dart';
 import '../../constants/image_constants.dart';
 import '../blocs/splash_bloc.dart';
 import 'login_screen.dart';
+import '../../utils/responsive_layout.dart';
 
 class SplashScreen extends StatelessWidget {
   final SplashBloc splashBloc;
 
-  SplashScreen({super.key, required this.splashBloc}) {
-  }
+  SplashScreen({super.key, required this.splashBloc});
 
   @override
   Widget build(BuildContext context) {
+    ResponsiveLayout().init(context);
+
+    double blockSizeHorizontal = ResponsiveLayout.blockSizeHorizontal!;
+    double blockSizeVertical = ResponsiveLayout.blockSizeVertical!;
+
     Widget buildLogoSection() {
       return Container(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 60),
+        padding: EdgeInsets.only(
+          left: blockSizeHorizontal * 10,
+          right: blockSizeHorizontal * 10,
+          top: blockSizeVertical * 6,
+        ),
         child: Column(
           children: [
             Image.asset(
               ImageConstants.logoImage,
               fit: BoxFit.cover,
             ),
-            const SizedBox(height: 40),
-            const Text(
+            SizedBox(height: blockSizeVertical * 4),
+            Text(
               'Gathrr: Where Events \n Come to Life, Effortlessly!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 24,
+                fontSize: blockSizeHorizontal * 5,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w400,
                 height: 1.2,
               ),
             ),
-            const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Image.asset(
-                ImageConstants.networkImage,
-                fit: BoxFit.cover,
-              ),
+            SizedBox(height: blockSizeVertical * 4),
+            Image.asset(
+              ImageConstants.networkImage,
+              fit: BoxFit.cover,
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: blockSizeVertical * 4),
           ],
         ),
       );
@@ -65,7 +71,7 @@ class SplashScreen extends StatelessWidget {
               ),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(blockSizeHorizontal * 2),
                 child: ElevatedButton(
                   onPressed: () {
                     Get.to(const LoginScreen());
@@ -73,12 +79,12 @@ class SplashScreen extends StatelessWidget {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(const Color(0xFF004999)),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Get started',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: blockSizeHorizontal * 5,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w600,
                       height: 1.2,

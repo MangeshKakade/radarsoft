@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../utils/responsive_layout.dart';
 import '../../../view_models/home_view_model.dart';
+import '../../../widget/category_tab.dart';
 import 'CategoryTabScreens/all_event.dart';
 import 'CategoryTabScreens/computer_screen.dart';
 import 'CategoryTabScreens/startup_screen.dart';
@@ -36,6 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ResponsiveLayout().init(context);
+
+    double blockSizeHorizontal = ResponsiveLayout.blockSizeHorizontal!;
+    double blockSizeVertical = ResponsiveLayout.blockSizeVertical!;
+
     final now = DateTime.now();
     final formattedDate = DateFormat('EEEE, dd MMMM').format(now);
 
@@ -43,7 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
+            padding: EdgeInsets.only(
+              top: blockSizeVertical * 5,
+              left: blockSizeHorizontal * 5,
+              right: blockSizeHorizontal * 5,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -53,34 +64,34 @@ class _HomeScreenState extends State<HomeScreen> {
                       Icons.location_on,
                       color: Colors.blue,
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: blockSizeHorizontal * 3),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           formattedDate,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
+                            fontSize: blockSizeVertical * 2,
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        SizedBox(height: 5,),
+                        SizedBox(height: blockSizeVertical),
                         Text(
                           'Kalyani Nagar Pune,',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.black,
-                            fontSize: 14,
+                            fontSize: blockSizeVertical * 1.5,
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
                         Text(
                           'MH IN',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.black,
-                            fontSize: 14,
+                            fontSize: blockSizeVertical * 1.5,
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.w400,
                           ),
@@ -94,21 +105,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icon(
                       Icons.search_rounded,
                       color: Colors.grey,
-                      size: 30,
+                      size: blockSizeVertical * 3,
                     ),
-                    const SizedBox(width: 24),
+                    SizedBox(width: blockSizeHorizontal * 4),
                     Icon(
                       Icons.notifications_none_sharp,
                       color: Colors.grey,
-                      size: 30,
+                      size: blockSizeVertical * 3,
                     ),
                   ],
                 ),
               ],
             ),
           ),
-
-          const SizedBox(height: 16),
+          SizedBox(height: blockSizeVertical * 2),
           Container(
             decoration: BoxDecoration(
               border: Border.all(
@@ -116,25 +126,28 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: blockSizeVertical * 2),
           Container(
-            padding: const EdgeInsets.only(left: 15, right: 15),
+            padding: EdgeInsets.only(
+              left: blockSizeHorizontal * 3,
+              right: blockSizeHorizontal * 3,
+            ),
             child: Column(
               children: [
-                const Row(
+                Row(
                   children: [
                     Text(
                       'Browse by categories',
                       style: TextStyle(
                         color: const Color(0xFF001833),
-                        fontSize: 16,
+                        fontSize: blockSizeVertical * 2.5,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: blockSizeVertical * 2),
                 SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
@@ -152,8 +165,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 });
                                 pageController.jumpToPage(index);
                               },
+                              blockSizeHorizontal: blockSizeHorizontal * 0.8,
+                              blockSizeVertical: blockSizeVertical * 0.7,
                             ),
-                            SizedBox(width: 15), // Add space between tab buttons
+                            SizedBox(width: blockSizeHorizontal * 4),
                           ],
                         ),
                     ],
@@ -162,8 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 16),
-
+          SizedBox(height: blockSizeVertical * 2),
           Expanded(
             child: PageView(
               controller: pageController,
@@ -179,52 +193,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CategoryTab extends StatelessWidget {
-  final String text;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const CategoryTab({
-    Key? key,
-    required this.text,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final selectedColor = const Color(0xFF004999);
-    final unselectedColor = const Color(0xFF8C8C8C);
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 108,
-        height: 35,
-        decoration: BoxDecoration(
-          color: isSelected ? selectedColor : Colors.white,
-          border: Border.all(
-            width: 0.80,
-            color: isSelected ? selectedColor : unselectedColor,
-          ),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              color: isSelected ? Colors.white : unselectedColor,
-              fontSize: 15,
-              fontFamily: 'Lato',
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:radarsofttask/app/presentation/pages/BottomBar/HomeScreen/EventD
 import 'package:radarsofttask/app/presentation/pages/BottomBar/HomeScreen/EventDetailsScreen/screens/speakers_tab_screen.dart';
 import 'package:radarsofttask/app/presentation/pages/BottomBar/HomeScreen/EventDetailsScreen/screens/sponsors_tab_screen.dart';
 
+import '../../../../../utils/responsive_layout.dart';
 import '../../bottom_bar.dart';
 
 class EventDetailsScreen extends StatefulWidget {
@@ -19,11 +20,20 @@ class EventDetailsScreen extends StatefulWidget {
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    ResponsiveLayout().init(context);
+
+    double blockSizeHorizontal = ResponsiveLayout.blockSizeHorizontal!;
+    double blockSizeVertical = ResponsiveLayout.blockSizeVertical!;
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.only(top: 40,left: 15,right: 15),
+          padding: EdgeInsets.only(
+            top: blockSizeVertical * 4,
+            left: blockSizeHorizontal * 3,
+            right: blockSizeHorizontal * 3,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,27 +42,39 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.grey, size: 30),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.grey,
+                      size: blockSizeHorizontal * 7,
+                    ),
                     onPressed: () {
                       Get.to(BottomBar());
                     },
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      Icon(Icons.favorite_border_outlined, color: Colors.grey, size: 30),
-                      SizedBox(width: 12),
-                      Icon(Icons.messenger_outline, color: Colors.grey, size: 30),
+                      Icon(
+                        Icons.favorite_border_outlined,
+                        color: Colors.grey,
+                        size: blockSizeHorizontal * 7,
+                      ),
+                      SizedBox(width: blockSizeHorizontal * 2),
+                      Icon(
+                        Icons.messenger_outline,
+                        color: Colors.grey,
+                        size: blockSizeHorizontal * 7,
+                      ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: blockSizeVertical * 1),
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(blockSizeHorizontal * 2.5),
                 child: Image.network(
                   widget.eventData['eventBanner'],
                   width: double.infinity,
-                  height: 200,
+                  height: blockSizeVertical * 30,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -82,11 +104,3 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     );
   }
 }
-
-
-
-
-
-
-
-

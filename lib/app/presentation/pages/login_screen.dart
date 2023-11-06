@@ -5,6 +5,7 @@ import 'package:radarsofttask/app/presentation/pages/signIn_screen.dart';
 import '../../constants/image_constants.dart';
 import '../../data/services/navigation_service.dart';
 import '../../utils/loading_indicator.dart';
+import '../../utils/responsive_layout.dart';
 import '../blocs/login_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,13 +18,20 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    ResponsiveLayout().init(context);
+
     return BlocProvider(
       create: (context) => LoginScreenBloc(),
       child: BlocBuilder<LoginScreenBloc, LoginScreenState>(
         builder: (context, state) {
           return Scaffold(
             body: Container(
-              padding: const EdgeInsets.only(left: 16, right: 10, top: 60),
+              padding: EdgeInsets.fromLTRB(
+                ResponsiveLayout.blockSizeHorizontal! * 5,
+                ResponsiveLayout.blockSizeHorizontal! * 16,
+                ResponsiveLayout.blockSizeHorizontal! * 5,
+                ResponsiveLayout.blockSizeHorizontal! * 6,
+              ),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,31 +42,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    const SizedBox(height: 68),
-                    const Text(
+                    SizedBox(height: ResponsiveLayout.blockSizeVertical! * 5),
+                    Text(
                       'Login to Gathrr',
                       style: TextStyle(
                         color: Color(0xFF001833),
-                        fontSize: 32,
+                        fontSize: ResponsiveLayout.blockSizeHorizontal! * 6,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w500,
-                        height: 0.02,
+                        height: 1.2,
                       ),
                     ),
-                    const SizedBox(height: 48),
-                    const Text(
+                    SizedBox(height: ResponsiveLayout.blockSizeVertical! * 4),
+                    Text(
                       'Gathrr is the go-to app to attend events and network with people from your industry.',
                       style: TextStyle(
                         color: Color(0xFF4B4B4B),
-                        fontSize: 20,
+                        fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w400,
                         height: 1.2,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: ResponsiveLayout.blockSizeVertical! * 2),
                     LoginFormField(state: state),
-                    const SizedBox(height: 40),
+                    SizedBox(height: ResponsiveLayout.blockSizeVertical! * 4),
                   ],
                 ),
               ),
@@ -95,36 +103,41 @@ class LoginFormField extends StatelessWidget {
         ),
       ),
       child: Container(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 48),
+        padding: EdgeInsets.fromLTRB(
+          ResponsiveLayout.blockSizeHorizontal! * 2,
+          ResponsiveLayout.blockSizeHorizontal! * 2,
+          ResponsiveLayout.blockSizeHorizontal! * 2,
+          ResponsiveLayout.blockSizeVertical! * 6,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Phone number',
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 24,
+                fontSize: ResponsiveLayout.blockSizeHorizontal! * 5,
                 fontFamily: 'Lato',
                 fontWeight: FontWeight.w500,
-                height: 0.03,
+                height: ResponsiveLayout.blockSizeVertical! * 0.3,
               ),
             ),
-            const SizedBox(height: 28),
+            SizedBox(height: ResponsiveLayout.blockSizeVertical! * 3),
             TextFormFieldWidget(state: state),
-            const SizedBox(height: 20),
+            SizedBox(height: ResponsiveLayout.blockSizeVertical! * 2),
             CheckboxWidget(state: state),
-            const SizedBox(height: 48),
+            SizedBox(height: ResponsiveLayout.blockSizeVertical! * 4),
             ElevatedButtonWidget(state: state),
-            const SizedBox(height: 20),
+            SizedBox(height: ResponsiveLayout.blockSizeVertical! * 2),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "Already have an account? ",
                   style: TextStyle(
                     color: Color(0xFF4B4B4B),
-                    fontSize: 20,
+                    fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.w400,
                   ),
@@ -133,11 +146,11 @@ class LoginFormField extends StatelessWidget {
                   onPressed: () {
                     Get.to(SignInScreen());
                   },
-                  child: const Text(
+                  child: Text(
                     "Register",
                     style: TextStyle(
                       color: Color(0xFF004999),
-                      fontSize: 20,
+                      fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w600,
                       decoration: TextDecoration.underline,
@@ -146,13 +159,14 @@ class LoginFormField extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: ResponsiveLayout.blockSizeVertical! * 4),
           ],
         ),
       ),
     );
   }
 }
+
 
 class TextFormFieldWidget extends StatelessWidget {
   final LoginScreenState state;
@@ -165,15 +179,15 @@ class TextFormFieldWidget extends StatelessWidget {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         hintText: 'Please enter your phone number',
-        labelStyle: const TextStyle(
-          fontSize: 16,
+        labelStyle: TextStyle(
+          fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
           fontFamily: 'Lato',
           fontWeight: FontWeight.w400,
-          height: 0.08,
+          height: ResponsiveLayout.blockSizeVertical! * 0.8,
         ),
-        border: const OutlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: BorderSide(
-            width: 1,
+            width: ResponsiveLayout.blockSizeHorizontal! * 0.3,
             color: Color(0x3D004999),
           ),
         ),
@@ -191,6 +205,7 @@ class TextFormFieldWidget extends StatelessWidget {
     );
   }
 }
+
 
 class CheckboxWidget extends StatelessWidget {
   final LoginScreenState state;
@@ -210,54 +225,54 @@ class CheckboxWidget extends StatelessWidget {
           focusColor: const Color(0xFF83BAF6),
           hoverColor: const Color(0xFF83BAF6),
         ),
-        const Text.rich(
+        Text.rich(
           TextSpan(
             children: [
               TextSpan(
                 text: 'By proceeding you agree to our ',
                 style: TextStyle(
                   color: Color(0xFF4B4B4B),
-                  fontSize: 16,
+                  fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                   fontFamily: 'Lato',
                   fontWeight: FontWeight.w400,
-                  height: 1.2,
+                  height: ResponsiveLayout.blockSizeVertical! * 0.12,
                 ),
               ),
               TextSpan(
                 text: 'Terms \n',
                 style: TextStyle(
                   color: Color(0xFF004999),
-                  fontSize: 16,
+                  fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                   fontFamily: 'Lato',
                   fontWeight: FontWeight.w600,
-                  height: 1.2,
+                  height: ResponsiveLayout.blockSizeVertical! * 0.12,
                 ),
               ),
               TextSpan(
                 text: ' & ',
                 style: TextStyle(
                   color: Color(0xFF4B4B4B),
-                  fontSize: 16,
+                  fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                   fontFamily: 'Lato',
                   fontWeight: FontWeight.w400,
-                  height: 1.2,
+                  height: ResponsiveLayout.blockSizeVertical! * 0.12,
                 ),
               ),
               TextSpan(
                 text: 'Conditions',
                 style: TextStyle(
                   color: Color(0xFF004999),
-                  fontSize: 16,
+                  fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                   fontFamily: 'Lato',
                   fontWeight: FontWeight.w600,
-                  height: 1.2,
+                  height: ResponsiveLayout.blockSizeVertical! * 0.12,
                 ),
               ),
               TextSpan(
                 text: ' ',
                 style: TextStyle(
                   color: Color(0xFF4B4B4B),
-                  fontSize: 16,
+                  fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                   fontFamily: 'Lato',
                   fontWeight: FontWeight.w400,
                   height: 1.2,
@@ -267,11 +282,10 @@ class CheckboxWidget extends StatelessWidget {
                 text: 'Privacy Policies',
                 style: TextStyle(
                   color: Color(0xFF004999),
-                  fontSize: 16,
+                  fontSize: ResponsiveLayout.blockSizeHorizontal! * 4,
                   fontFamily: 'Lato',
                   fontWeight: FontWeight.w600,
-                  height: 1.2,
-                ),
+                  height: 1.2,                ),
               ),
             ],
           ),
@@ -281,6 +295,7 @@ class CheckboxWidget extends StatelessWidget {
   }
 }
 
+
 class ElevatedButtonWidget extends StatelessWidget {
   final LoginScreenState state;
 
@@ -288,6 +303,9 @@ class ElevatedButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double buttonHeight = ResponsiveLayout.blockSizeVertical! * 6;
+    final double fontSize = ResponsiveLayout.blockSizeHorizontal! * 4;
+
     return ElevatedButton(
       onPressed: () {
         if (state.phoneNumber.length == 10) {
@@ -303,18 +321,19 @@ class ElevatedButtonWidget extends StatelessWidget {
           side: const BorderSide(width: 0.60, color: Color(0xFF004999)),
           borderRadius: BorderRadius.circular(4),
         ),
+        minimumSize: Size(double.infinity, buttonHeight),
       ),
       child: Container(
         width: double.infinity,
-        height: 48,
+        height: buttonHeight,
         alignment: Alignment.center,
         child: state.isLoading
             ? CustomLoadingIndicator()
-            : const Text(
+            : Text(
           'Login',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 20,
+            fontSize: fontSize,
             fontFamily: 'Lato',
             fontWeight: FontWeight.w500,
           ),
@@ -323,6 +342,7 @@ class ElevatedButtonWidget extends StatelessWidget {
     );
   }
 }
+
 
 
 

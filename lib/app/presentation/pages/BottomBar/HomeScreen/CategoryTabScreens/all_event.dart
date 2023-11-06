@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../data/repositories/event_List_data.dart';
 import '../../../../../models/event_list.dart';
+import '../../../../../utils/responsive_layout.dart';
 import '../../../../view_models/event_item_list._view_model.dart';
 import '../../../../widget/slider_images.dart';
 
@@ -15,13 +16,18 @@ class AllEvent extends StatefulWidget {
 class _AllEventState extends State<AllEvent> {
   @override
   Widget build(BuildContext context) {
+    ResponsiveLayout().init(context);
+
+    double blockSizeHorizontal = ResponsiveLayout.blockSizeHorizontal!;
+    double blockSizeVertical = ResponsiveLayout.blockSizeVertical!;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             SliderImages(),
             Container(
-              padding: EdgeInsets.only(left: 15, right: 15),
+              padding: EdgeInsets.symmetric(horizontal: blockSizeHorizontal * 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -29,25 +35,23 @@ class _AllEventState extends State<AllEvent> {
                     'Explore Local Events In Your Area',
                     style: TextStyle(
                       color: Color(0xFF001833),
-                      fontSize: 16,
+                      fontSize: blockSizeVertical * 2.3,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w700,
-                      height: 0,
+                      height: 1.2,
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Show more',
                       style: TextStyle(
                         color: Color(0xFF0062CC),
-                        fontSize: 14,
+                        fontSize: blockSizeVertical * 1.7,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w400,
                         decoration: TextDecoration.underline,
-                        height: 0,
+                        height: 1.2,
                       ),
                     ),
                   ),
@@ -58,7 +62,7 @@ class _AllEventState extends State<AllEvent> {
               future: EventListData.fetchEventData(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return _buildLoadingIndicator();
+                  return _buildLoadingIndicator(blockSizeHorizontal, blockSizeVertical);
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Text('Error: ${snapshot.error}'),
@@ -80,7 +84,7 @@ class _AllEventState extends State<AllEvent> {
               },
             ),
             Container(
-              padding: EdgeInsets.only(left: 15, right: 15),
+              padding: EdgeInsets.symmetric(horizontal: blockSizeHorizontal * 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -88,25 +92,23 @@ class _AllEventState extends State<AllEvent> {
                     'Events this weekend',
                     style: TextStyle(
                       color: Color(0xFF001833),
-                      fontSize: 16,
+                      fontSize: blockSizeVertical * 2.3,
                       fontFamily: 'Lato',
                       fontWeight: FontWeight.w700,
-                      height: 0,
+                      height: 1.2,
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Show more',
                       style: TextStyle(
                         color: Color(0xFF0062CC),
-                        fontSize: 14,
+                        fontSize: blockSizeVertical * 1.7,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w400,
                         decoration: TextDecoration.underline,
-                        height: 0,
+                        height: 1.2, // Adjust line height
                       ),
                     ),
                   ),
@@ -119,7 +121,7 @@ class _AllEventState extends State<AllEvent> {
     );
   }
 
-  Widget _buildLoadingIndicator() {
+  Widget _buildLoadingIndicator(double blockSizeHorizontal, double blockSizeVertical) {
     return ListView.builder(
       itemCount: 5,
       shrinkWrap: true,
@@ -130,13 +132,13 @@ class _AllEventState extends State<AllEvent> {
           highlightColor: Colors.grey[100]!,
           child: ListTile(
             title: Container(
-              width: 100.0,
-              height: 20.0,
+              width: blockSizeHorizontal * 20,
+              height: blockSizeVertical * 4,
               color: Colors.white,
             ),
             subtitle: Container(
-              width: 200.0,
-              height: 10.0,
+              width: blockSizeHorizontal * 40,
+              height: blockSizeVertical * 2,
               color: Colors.white,
             ),
           ),
@@ -145,5 +147,3 @@ class _AllEventState extends State<AllEvent> {
     );
   }
 }
-
-

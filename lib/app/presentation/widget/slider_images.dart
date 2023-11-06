@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../constants/image_constants.dart';
 import '../../data/repositories/slider_images_data.dart';
+import '../../utils/responsive_layout.dart';
 
 class SliderImages extends StatefulWidget {
   const SliderImages({Key? key}) : super(key: key);
@@ -30,24 +31,29 @@ class _SliderImagesState extends State<SliderImages> {
 
   @override
   Widget build(BuildContext context) {
+    ResponsiveLayout().init(context);
+
+    double blockSizeHorizontal = ResponsiveLayout.blockSizeHorizontal!;
+    double blockSizeVertical = ResponsiveLayout.blockSizeVertical!;
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: eventData.map((event) => buildEventCard(event)).toList(),
+        children: eventData.map((event) => buildEventCard(event, blockSizeHorizontal, blockSizeVertical)).toList(),
       ),
     );
   }
 
-  Widget buildEventCard(Map<String, String> event) {
+  Widget buildEventCard(Map<String, String> event, double blockSizeHorizontal, double blockSizeVertical) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(blockSizeHorizontal * 5),
       child: Stack(
         children: [
           Container(
-            width: 350,
-            height: 200,
+            width: blockSizeHorizontal * 70,
+            height: blockSizeVertical * 22,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(blockSizeHorizontal * 2.2),
               child: Image.asset(
                 ImageConstants.bagImage,
                 fit: BoxFit.cover,
@@ -55,81 +61,81 @@ class _SliderImagesState extends State<SliderImages> {
             ),
           ),
           Positioned(
-            top: 10,
-            left: 10,
+            top: blockSizeVertical * 1.2,
+            left: blockSizeHorizontal * 2.5,
             child: Text(
               event['organiserMaster'] ?? '',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 14,
+                fontSize: blockSizeHorizontal * 2.8,
                 fontFamily: 'Lato',
                 fontWeight: FontWeight.w700,
               ),
             ),
           ),
           Positioned(
-            top: 40,
-            left: 10,
+            top: blockSizeVertical * 4.2,
+            left: blockSizeHorizontal * 2.5,
             child: Text(
               event['eventName'] ?? '',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: blockSizeHorizontal * 3.2,
                 fontWeight: FontWeight.bold,
                 color: Colors.orange,
               ),
             ),
           ),
           Positioned(
-            top: 80,
-            left: 10,
+            top: blockSizeVertical * 8,
+            left: blockSizeHorizontal * 2.5,
             child: Text(
               event['startDate'] ?? '',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: blockSizeHorizontal * 2.8,
                 color: Colors.white,
               ),
             ),
           ),
           Positioned(
-            top: 110,
-            left: 10,
+            top: blockSizeVertical * 11,
+            left: blockSizeHorizontal * 2.5,
             child: Text(
               event['venue'] ?? '',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: blockSizeHorizontal * 2.8,
                 color: Colors.white,
               ),
             ),
           ),
           Positioned(
-            top: 140,
-            left: 10,
+            top: blockSizeVertical * 14,
+            left: blockSizeHorizontal * 2.5,
             child: Text(
               event['location'] ?? '',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: blockSizeHorizontal * 2.8,
                 color: Colors.white,
               ),
             ),
           ),
           Positioned(
-            top: 180,
-            left: 10,
+            top: blockSizeVertical * 18,
+            left: blockSizeHorizontal * 2.5,
             child: Text(
               'Terms & Conditions Apply*',
               style: TextStyle(
                 color: Color(0xFF8C8C8C),
-                fontSize: 10,
+                fontSize: blockSizeHorizontal * 2,
                 fontFamily: 'Helvetica',
                 fontWeight: FontWeight.w400,
               ),
             ),
           ),
           Positioned(
-            top: 70,
-            left: 230,
+            top: blockSizeVertical * 7.5,
+            left: blockSizeHorizontal * 45,
             child: buildScannerImage(),
           ),
         ],
@@ -139,8 +145,8 @@ class _SliderImagesState extends State<SliderImages> {
 
   Widget buildScannerImage() {
     return Container(
-      width: 105,
-      height: 105,
+      width: 85,
+      height: 85,
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
