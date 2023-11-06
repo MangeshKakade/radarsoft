@@ -56,7 +56,7 @@ class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFF4B4B4B),
-                        fontSize: ResponsiveLayout.blockSizeVertical! * 3,
+                        fontSize: ResponsiveLayout.blockSizeVertical! * 2.5,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w400,
                       ),
@@ -115,7 +115,7 @@ class _OTPVerifyScreenState extends State<OTPVerifyScreen> {
                           'Verify',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: ResponsiveLayout.blockSizeVertical! * 3,
+                            fontSize: ResponsiveLayout.blockSizeVertical! * 2.5,
                             fontFamily: 'Lato',
                             fontWeight: FontWeight.w500,
                           ),

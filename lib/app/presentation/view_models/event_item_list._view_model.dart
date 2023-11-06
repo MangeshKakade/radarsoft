@@ -67,15 +67,15 @@ class _EventItemListState extends State<EventItemList> {
           children: [
             Row(
               children: [
-                Icon(Icons.calendar_today, color: Color(0xFF0D094D)),
-                SizedBox(width: blockSizeHorizontal * 0.4),
+                Icon(Icons.calendar_today, color: Color(0xFF0D094D),size:blockSizeVertical * 2 ,),
+                SizedBox(width: blockSizeHorizontal * 0.6),
                 Text(
                   widget.event.startDate != null && widget.event.endDate != null
-                      ? DateTimeUtils.formatDateRange(widget.event.startDate!, widget.event.endDate!)
+                      ? DateTimeUtils.formatDateRange(widget.event.startDate!,widget.event.endDate!)
                       : "",
                   style: TextStyle(
                     color: Color(0xFF0D094D),
-                    fontSize: blockSizeVertical * 1.5,
+                    fontSize: blockSizeVertical * 1.3,
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.w400,
                   ),
@@ -84,7 +84,7 @@ class _EventItemListState extends State<EventItemList> {
             ),
             Row(
               children: [
-                Icon(Icons.access_time, color: Color(0xFF0D094D)),
+                Icon(Icons.access_time, color: Color(0xFF0D094D),size:blockSizeVertical * 2 ),
                 SizedBox(width: blockSizeHorizontal * 0.4),
                 Text(
                   widget.event.startDate != null && widget.event.endDate != null
@@ -92,7 +92,7 @@ class _EventItemListState extends State<EventItemList> {
                       : "",
                   style: TextStyle(
                     color: Color(0xFF0D094D),
-                    fontSize: blockSizeVertical * 1.5,
+                    fontSize: blockSizeVertical * 1.3,
                     fontFamily: 'Lato',
                     fontWeight: FontWeight.w400,
                   ),
@@ -104,13 +104,13 @@ class _EventItemListState extends State<EventItemList> {
         SizedBox(height: blockSizeVertical * 0.8),
         Row(
           children: [
-            Icon(Icons.location_on, color: Color(0xFF0E0A4E)),
+            Icon(Icons.location_on, color: Color(0xFF0E0A4E),size:blockSizeVertical * 2 ),
             SizedBox(width: blockSizeHorizontal * 0.8),
             Text(
               widget.event.location ?? '',
               style: TextStyle(
                 color: Color(0xFF0E0A4E),
-                fontSize: blockSizeVertical * 1.5,
+                fontSize: blockSizeVertical * 1.3,
                 fontFamily: 'Lato',
                 fontWeight: FontWeight.w400,
               ),
@@ -123,13 +123,13 @@ class _EventItemListState extends State<EventItemList> {
             children: [
         Row(
         children: [
-        Icon(Icons.person, color: Color(0xFF0D094D)),
+        Icon(Icons.person, color: Color(0xFF0D094D),size:blockSizeVertical * 2 ),
         SizedBox(width: blockSizeHorizontal * 0.8),
         Text(
           'Booking limit - ${widget.event.bookingMaxLimit ?? ""}',
           style: TextStyle(
             color: Color(0xFF0D094D),
-            fontSize: blockSizeVertical * 1.5,
+            fontSize: blockSizeVertical * 1.3,
             fontFamily: 'Lato',
             fontWeight: FontWeight.w400,
           ),

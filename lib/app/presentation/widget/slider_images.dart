@@ -50,7 +50,7 @@ class _SliderImagesState extends State<SliderImages> {
       child: Stack(
         children: [
           Container(
-            width: blockSizeHorizontal * 70,
+            width: blockSizeHorizontal * 76,
             height: blockSizeVertical * 22,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(blockSizeHorizontal * 2.2),
@@ -121,7 +121,7 @@ class _SliderImagesState extends State<SliderImages> {
             ),
           ),
           Positioned(
-            top: blockSizeVertical * 19,
+            top: blockSizeVertical * 20,
             left: blockSizeHorizontal * 2.5,
             child: Text(
               'Terms & Conditions Apply*',
@@ -134,8 +134,8 @@ class _SliderImagesState extends State<SliderImages> {
             ),
           ),
           Positioned(
-            top: blockSizeVertical * 7.5,
-            left: blockSizeHorizontal * 45,
+            top: blockSizeVertical * 8,
+            left: blockSizeHorizontal * 50,
             child: buildScannerImage(),
           ),
         ],
